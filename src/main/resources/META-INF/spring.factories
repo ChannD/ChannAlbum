@@ -1,0 +1,5 @@
+org.springframework.context.ApplicationContextInitializer=\
+com.chann.album.listener.HelloApplicationContextInitializer
+
+org.springframework.boot.SpringApplicationRunListener=\
+com.chann.album.listener.HelloSpringApplicationRunListener
