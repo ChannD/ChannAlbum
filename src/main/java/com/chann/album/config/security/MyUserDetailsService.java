@@ -24,9 +24,9 @@ public class MyUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String s) {
         com.chann.album.entity.User user = userRepository.findByUsername(s);
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        for (Role role : user.getRoles()) {
-            authorities.add(new SimpleGrantedAuthority(role.getName()));
-        }
+//        for (Role role : user.getRoles()) {
+            authorities.add(new SimpleGrantedAuthority("admin"));
+//        }
         return new User(user.getUsername()
                 ,  user.getPassword()
                 ,true, true, true ,true

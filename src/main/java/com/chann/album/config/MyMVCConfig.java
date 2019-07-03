@@ -5,36 +5,44 @@ import org.springframework.boot.web.server.WebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.util.ResourceUtils;
+import org.springframework.web.servlet.config.annotation.*;
 
 @Configuration
 public class MyMVCConfig extends WebMvcConfigurationSupport {
+//public class MyMVCConfig implements WebMvcConfigurer {
 
 
 
     @Override
-    protected void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/atguigu").setViewName("success");
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
     }
 
 
-    @Bean
-    public WebMvcConfigurationSupport webMvcConfigurationSupport(){
-        WebMvcConfigurationSupport webMvcConfigurationSupport = new WebMvcConfigurationSupport() {
-            @Override
-            public void addViewControllers(ViewControllerRegistry registry) {
-                registry.addViewController("/").setViewName("index");
-                registry.addViewController("/index.html").setViewName("index");
-                registry.addViewController("/sign_in").setViewName("login");
-                registry.addViewController("/sign_up").setViewName("registry");
-            }
 
 
-        };
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(new LoginRequiredInterceptor()).excludePathPatterns(Arrays.asList("/views/**", "/res/**"));
+//    }
 
-        return webMvcConfigurationSupport;
-    }
+
+
+//    @Bean
+//    public WebMvcConfigurationSupport webMvcConfigurationSupport(){
+//        WebMvcConfigurationSupport webMvcConfigurationSupport = new WebMvcConfigurationSupport() {
+//            @Override
+//            public void addViewControllers(ViewControllerRegistry registry) {
+//                registry.addViewController("/").setViewName("album");
+//                registry.addViewController("/index.html").setViewName("album");
+////                registry.addViewController("/sign_in").setViewName("login");
+////                registry.addViewController("/sign_up").setViewName("registry");
+//            }
+//
+//
+//        };
+//
+//        return webMvcConfigurationSupport;
+//    }
 }

@@ -17,8 +17,8 @@ public class User {
     private String username;
     private String password;
 
-    @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
-    private List<Role> roles;
+//    @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
+//    private List<Role> roles;
 
     public User() {
     }

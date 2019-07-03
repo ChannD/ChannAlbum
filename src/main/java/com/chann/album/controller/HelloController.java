@@ -34,20 +34,7 @@ public class HelloController {
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    @RequestMapping("/authentication/require")
-    @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
-    public SimpleResponse requireAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        SavedRequest savedRequest = requestCache.getRequest(request, response);
-        if(savedRequest != null ){
-            String target = savedRequest.getRedirectUrl();
-            logger.info("引发跳转的请求 : " + target);
 
-            if(StringUtils.endsWithIgnoreCase(target, ".html")){
-                redirectStrategy.sendRedirect(request, response, "");
-            }
-        }
-        return new SimpleResponse("访问的服务要认真");
-    }
 
 
     @RequestMapping("success")

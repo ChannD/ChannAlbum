@@ -35,14 +35,28 @@ spring:
 #      - classpath:sql/department.sql
 #      - classpath:sql/employee.sql
     initialization-mode: always
-
+  mvc:
+    static-path-pattern: classpath:/static/,classpath:/templates/
+    servlet:
+      multipart:
+        max-file-size: 20MB
+        max-request-size: 100MB
 #  JPA 相关配置
   jpa:
-    hibernate:
-      #     更新或者创建数据表结构
-      ddl-auto: update
-    #    控制台显示SQL
+    # 配置 DBMS 类型
+    database: MYSQL
+    # 配置是否将执行的 SQL 输出到日志
     show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.spatial.dialect.mysql.MySQLSpatialDialect
+        enable_lazy_load_no_trans: true
+        hbm2ddl:
+          # 配置开启自动更新表结构
+          auto: update
+    database-platform: mysql
+    #    database-platform: org.hibernate.dialect.MySQL5Dialect
+    open-in-view: false
 
   #  环境
   profiles: dev
