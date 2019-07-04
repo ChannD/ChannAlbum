@@ -48,6 +48,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter{
                 .and().rememberMe().tokenValiditySeconds(1209600)
                 .and().logout().logoutSuccessUrl("/sign_in").permitAll()
                 .and().csrf().disable();
+        http.headers().frameOptions().sameOrigin();
     }
 
     @Override
